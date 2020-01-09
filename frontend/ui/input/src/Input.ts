@@ -11,6 +11,7 @@ export interface InputElementProps {
   warning?: boolean
   transparent?: boolean
   select?: boolean
+  border?: string
 }
 
 export interface InputProps extends InputElementProps {

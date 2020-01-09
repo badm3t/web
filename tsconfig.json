@@ -13,5 +13,8 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "preserveSymlinks": true,
-  }
+    "jsx": "react"
+  },
+  "exclude": ["node_modules"],
+  "include": ["frontend/**/*.ts"]
 }

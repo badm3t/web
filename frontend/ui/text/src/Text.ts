@@ -9,6 +9,8 @@ export interface TextProps {
   align?: 'left' | 'center' | 'right'
   transform?: 'uppercase' | 'lowercase'
   display?: string
+  border?: string
+  height?: string
 }
 
 const Text = styled.span<TextProps>(

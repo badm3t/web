@@ -7,8 +7,19 @@ import { Button } from '@ui/button'
 import { RouteLink } from '@ui/link'
 import messages from '../../messages'
 
+interface IErrors {
+  email?: string
+  password?: string
+}
+
 interface Props {
   intl: InjectedIntl
+  email: string
+  password: string
+  errors: IErrors
+  onLogin: () => void
+  onChangeEmail: (value: string) => void
+  onChangePassword: (value: string) => void
 }
 
 const Login: FC<Props> = ({
