@@ -4,11 +4,26 @@ import { Column, Layout, Row } from '@ui/layout'
 import { Space, Text } from '@ui/text'
 import messages from '../../messages'
 
-interface Props {
-  intl: InjectedIntl
+interface IProfile {
+  firstName?: string
+  lastName?: string
 }
 
-const List = ({ rows, intl }: Props) => (
+interface IRow {
+  id: string
+  profile?: IProfile
+  email: string
+  registeredAt?: string
+  lastLogonAt?: string
+}
+
+interface Props {
+  intl: InjectedIntl
+  rows: IRow[]
+  onFilter: (value: string) => void
+}
+
+const List = ({ rows, intl, onFilter }: Props) => (
   <Column>
     <Layout basis={60} />
     <Row>
@@ -26,20 +41,36 @@ const List = ({ rows, intl }: Props) => (
         <Text size='s' weight='bold' transform='uppercase'>
           {intl.formatMessage(messages.name)}
         </Text>
+        <Text onClick={() => onFilter('firstName')}
+          size='s' weight='bold' transform='uppercase' color='red'>
+          {'<>'}
+        </Text>
       </Layout>
       <Layout basis={200}>
         <Text size='s' weight='bold' transform='uppercase'>
           {intl.formatMessage(messages.email)}
+        </Text>
+        <Text onClick={() => onFilter('email')}
+          size='s' weight='bold' transform='uppercase' color='red'>
+          {'<>'}
         </Text>
       </Layout>
       <Layout basis={180}>
         <Text size='s' weight='bold' transform='uppercase'>
           {intl.formatMessage(messages.registered)}
         </Text>
+        <Text onClick={() => onFilter('registeredAt')}
+          size='s' weight='bold' transform='uppercase' color='red'>
+          {'<>'}
+        </Text>
       </Layout>
       <Layout basis={160}>
         <Text size='s' weight='bold' transform='uppercase'>
           {intl.formatMessage(messages.lastLogin)}
+        </Text>
+        <Text onClick={() => onFilter('lastLogonAt')}
+          size='s' weight='bold' transform='uppercase' color='red'>
+          {'<>'}
         </Text>
       </Layout>
       <Layout basis='10%' />

@@ -3,6 +3,11 @@ import { auth } from '@frontend/common/src/constants/security'
 import * as actions from '../constants'
 import stub from './stub'
 
+export const setError = (errors) => ({
+  type: actions.setErrors,
+  errors
+})
+
 export const change = (field, value) => ({
   type: actions.change,
   field,
@@ -34,15 +39,20 @@ export const login = () => async (dispatch, getState, client) => {
         password,
       },
     })
+    
+    if (data.login.errors) {
+      dispatch(setError(data.login.errors))
+    } else {
+      dispatch({
+        type: auth,
+        // ...stub,
+        ...data.login.token,
+      })
+    }
   } catch (e) {
-    dispatch({
-      type: auth,
-      token: stub.token,
-      expiresIn: stub.expiresIn,
-    })
-
-    dispatch({
-      type: actions.clear,
-    })
+    // dispatch({
+    //   type: actions.clear,
+    // })
+    console.log(e.message)
   }
 }

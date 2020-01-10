@@ -2,6 +2,11 @@ import gql from 'graphql-tag'
 import * as actions from '../constants/list'
 import stub from './stub'
 
+export const filter = (filter) => ({
+  type: actions.setFilter,
+  filter,
+})
+
 export const load = () => async (dispatch, getState, client) => {
   try {
     const { data } = await client.query({
@@ -24,6 +29,12 @@ export const load = () => async (dispatch, getState, client) => {
         }
       `,
     })
+    if (data) {
+      dispatch({
+        type: actions.load,
+        list: stub
+      })
+    }
   } catch (e) {
     dispatch({
       type: actions.load,

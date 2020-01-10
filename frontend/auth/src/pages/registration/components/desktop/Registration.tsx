@@ -61,6 +61,15 @@ const Registration = ({
         />
       </Layout>
     </Row>
+    {errors.email &&
+      <Row justify='center'>
+        <Layout basis={360} justify='center'>
+          <Text size='s' color='red'>
+            {errors.email}
+          </Text>
+        </Layout>
+      </Row>
+    }
     <Layout basis={24} />
     <Row justify='center'>
       <Layout basis={360}>
@@ -97,6 +106,15 @@ const Registration = ({
         />
       </Layout>
     </Row>
+    {errors.password &&
+      <Row justify='center'>
+        <Layout basis={360} justify='center'>
+          <Text size='s' color='red' align='center'>
+            {errors.password}
+          </Text>
+        </Layout>
+      </Row>
+    }
     <Layout basis={24} />
     <Row justify='center'>
       <Layout basis={360}>

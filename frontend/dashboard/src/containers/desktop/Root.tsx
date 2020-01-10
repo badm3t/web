@@ -1,5 +1,6 @@
 import React from 'react'
 import { Provider } from 'react-redux'
+import { Store } from 'redux'
 import { PersistGate } from 'redux-persist/es/integration/react'
 import { History } from 'history'
 import { hot } from 'react-hot-loader'
@@ -11,6 +12,9 @@ import Routes from './Routes'
 
 interface RootProps {
   history: History
+  // RootState?, RootAction ?
+  store: Store<any, any>
+  persistor: any
 }
 
 const Root = ({ store, persistor, history }: RootProps) => (

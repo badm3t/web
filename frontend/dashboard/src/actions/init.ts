@@ -1,6 +1,19 @@
 import gql from 'graphql-tag'
 import * as actions from '../constants/me'
 
+export const load = (user) => ({
+  type: actions.load,
+  user,
+})
+
+// export const updateProfile = (last, profile) => ({
+//   type: actions.update,
+//   user: {
+//     ...last,
+//     profile,
+//   }
+// })
+
 export const init = () => async (dispatch, getState, client) => {
   const stub = {
     id: 1,
@@ -28,11 +41,14 @@ export const init = () => async (dispatch, getState, client) => {
         }
       `,
     })
+    if (!data.me.id) {
+      console.log(data.errors)
+    } else {
+      dispatch(load(data.me))
+    }
+    
   } catch (e) {
-    dispatch({
-      type: actions.load,
-      user: stub,
-    })
+    dispatch(load(stub))
   }
 }
 
